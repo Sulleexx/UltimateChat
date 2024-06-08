@@ -1,0 +1,8 @@
+name: UltimateChat
+version: '1.5'
+main: sullexxx.ultimatechat.UltimateChat
+api-version: '1.20'
+commands:
+  ultimatechat:
+    aliases: [ "uc", "chat", "ultimate" ]
+    permission: ultimatechat.command.main.use

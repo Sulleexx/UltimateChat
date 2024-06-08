@@ -1,0 +1,17 @@
+sullexxx\ultimatechat\discord\DiscordConsoleListener.class
+sullexxx\ultimatechat\LogAppender.class
+sullexxx\ultimatechat\discord\DiscordConnect.class
+sullexxx\ultimatechat\LogAppender$1.class
+sullexxx\ultimatechat\discord\DiscordMessagesListener.class
+sullexxx\ultimatechat\listeners\DieListener.class
+sullexxx\ultimatechat\commands\UltimateChatCommand.class
+sullexxx\ultimatechat\listeners\ServerReadyListener.class
+sullexxx\ultimatechat\configuration\LanguageConfig.class
+sullexxx\ultimatechat\listeners\ChatListener.class
+sullexxx\ultimatechat\exceptions\JDABuilderFailureException.class
+sullexxx\ultimatechat\listeners\ServerStopListener.class
+sullexxx\ultimatechat\UltimateChat.class
+sullexxx\ultimatechat\listeners\JoinListener.class
+sullexxx\ultimatechat\configuration\PlayerSettings.class
+sullexxx\ultimatechat\listeners\AchievementListener.class
+sullexxx\ultimatechat\listeners\LeaveListener.class

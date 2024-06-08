@@ -1,0 +1,46 @@
+#
+#  Файл локализации сообщений плагина
+#
+#  Поля, у которых упомянут игрок поддерживают плейсхолдер {player}
+#  Так же, если поле является удаленым и не является обьязательным, то оно будет проигнорировано.
+#  Если сообщения пустые, то они тоже игнорируются.
+#
+#  Почти все сообщения используют формат текста MiniMessage и Legacy
+#
+
+Pm: # Приватные сообщения
+  SelfMessage: ""
+  TargetNotExist: ""
+  PluginMute: ""
+  PmDisabledMinecraft: ""
+  PmDisabledDiscord: ""
+Global:
+  NoPermission: "<gradient:#FF0000:#4A0D0D>[UltimateChat] У вас нет прав."
+  NotEnoughArgs: "<gradient:#FF0000:#4A0D0D>[UltimateChat] Не достачно аргументов!"
+  UnknownCommand: "<gradient:#FF0000:#4A0D0D>[UltimateChat] Неизвестная команда! /uc help"
+  NotPlayer: "<gradient:#FF0000:#4A0D0D>[UltimateChat] Вы не игрок!"
+  UnknownError: "<gradient:#FF0000:#4A0D0D>[UltimateChat] Неизвестная ошибка!"
+  SuccessReloadConfig: "<gradient:#acabff:#00ecff>[UltimateChat] Успешная перезагрузка конфига!</gradient>"
+  SuccessReloadLanguage: "<gradient:#acabff:#00ecff>[UltimateChat] Успешная перезагрузка конфига сообщении!</gradient>"
+  SuccessReloadAll: "<gradient:#acabff:#00ecff>[UltimateChat] Успешная перезагрузка!</gradient>"
+Messages:
+  JoinMessagesOn: "<gradient:#0873FB:#AAAEFE>[UltimateChat] Вы успешно включили отображение сообщении о входе.</gradient>"
+  JoinMessagesOff: "<gradient:#0873FB:#AAAEFE>[UltimateChat] Вы успешно отключили отображение сообщении о входе.</gradient>"
+  LeaveMessagesOn: "<gradient:#0873FB:#AAAEFE>[UltimateChat] Вы успешно включили отображение сообщении о выходе.</gradient>"
+  LeaveMessagesOff: "<gradient:#0873FB:#AAAEFE>[UltimateChat] Вы успешно отключили отображение сообщении о выходе.</gradient>"
+  DeathMessagesOn: "<gradient:#0873FB:#AAAEFE>[UltimateChat] Вы успешно включили отображение сообщении о смерти.</gradient>"
+  DeathMessagesOff: "<gradient:#0873FB:#AAAEFE>[UltimateChat] Вы успешно отключили отображение сообщении о смерти.</gradient>"
+  DiscordMessagesOn: "<gradient:#0873FB:#AAAEFE>[UltimateChat] Вы успешно включили отображение сообщении из дискорда.</gradient>"
+  DiscordMessagesOff: "<gradient:#0873FB:#AAAEFE>[UltimateChat] Вы успешно отключили отображение сообщении из дискорда.</gradient>"
+Chats:
+  NotInRadius: "<gradient:#FF0B00:#751915:#FF0000>[UltimateChat] Вас никто не услышал.</gradient>"
+  NoPermissionToChat: "<gradient:#FF0B00:#751915:#FF0000>[UltimateChat] Нет прав для отправки сообщении в данный чат.</gradient>"
+  CooldownMessage: "<gradient:#FF0B00:#751915:#FF0000>[UltimateChat] Пожалуйста, подождите немного перед отправкой следующего сообщения.</gradient>"
+  DisabledChat: "<gradient:#FF0B00:#751915:#FF0000>[UltimateChat] Чат выключен.</gradient>"
+Help:
+  - "             <gradient:#CB2D3E:#EF473A>Помощь по плагину UltimateChat"
+  - "<gradient:#CB2D3E:#EF473A>1./uc help - Помощь по плагину"
+  - "<gradient:#CB2D3E:#EF473A>2./uc reload (all/language/config) - Перезагрузка плагина!"
+  - "<gradient:#CB2D3E:#EF473A>3./uc messages (join/leave/death/discord) (true/false) - Выключение/включение определенных сообщении!"
+  - "<gradient:#CB2D3E:#EF473A>4./pm (Player) (Message) - Личные сообщения по майнкрафту"
+  - "<gradient:#CB2D3E:#EF473A>5./pm (DiscordNickname) (Message) - Личные сообщения в дискорд"

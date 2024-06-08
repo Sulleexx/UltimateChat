@@ -1,0 +1,134 @@
+General:
+  Chats:
+    Local:  # Локальный чат
+      DisplayName: 'local chat' # Название чата
+      Enable: true  # Включить или выключить локальный чат
+      Range: 100  # Диапазон, в котором игроки могут видеть сообщения локального чата
+      Cooldown: -1  # Задержка между сообщениями (в секундах)
+      Permission: 'ultimatechat.localchat' # Если не нужны права на чат то пишите 'none'
+      Format: '&b LOCALE &r{prefix}{player}{suffix}&8: {message}'  # Формат сообщений в локальном чате
+
+    Global:  # Глобальный чат
+      DisplayName: 'global chat'  # Название чата
+      Enable: true  # Включить или выключить глобальный чат
+      Range: -2  # Диапазон, в котором игроки могут видеть сообщения глобального чата
+      Cooldown: -1  # Задержка между сообщениями (в секундах)
+      Symbol: '!'  # Символ для отправки сообщения в глобальный чат
+      Permission: 'ultimatechat.globalchat' # Если не нужны права на чат то пишите 'none'
+      Format: '&b GLOBAL &r{prefix}{player}{suffix}&8: {message}'  # Формат сообщений в глобальном чате
+
+    Staff:  # Чат для персонала
+      DisplayName: 'staff chat'  # Название чата
+      Enable: true  # Включить или выключить чат для персонала
+      Range: -2  # Диапазон, в котором игроки могут видеть сообщения чата персонала
+      Cooldown: -1  # Задержка между сообщениями (в секундах)
+      Symbol: '#'  # Символ для отправки сообщения в чат персонала
+      Permission: 'ultimatechat.staffchat' # Если не нужны права на чат то пишите 'none'
+      Format: '&b STAFF &r{prefix}{player}{suffix}&8: {message}'  # Формат сообщений в чате персонала
+
+      # здесь вы можете создавать свои сообственные чаты по примеру вверху!
+
+    Custom: # Кастом чат
+      DisplayName: 'custom-1'  # Название чата
+      Enable: true # Включить или выключить чат для персонала
+      Range: -2  # Диапазон, в котором игроки могут видеть сообщения чата персонала
+      Cooldown: -1  # Задержка между сообщениями (в секундах)
+      Symbol: '*' # Символ для отправки сообщения в чат персонала
+      Permission: 'ultimatechat.customchat' # Если не нужны права на чат то пишите 'none'
+      Format: '&b CUSTOM &r{prefix}{player}{suffix}&8: {message}'# Формат сообщений в чате
+
+Discord:
+  Enable: false # false | true
+  Token: 'TOKEN'  # Токен вашего бота Discord
+  ChannelId: 'CHAT_ID'  # ID канала Discord, в который будут отправляться сообщения
+  ConsoleChannelId: '' # ID канала Discord, в которой будет консоль
+  BotStatus: 'сулекс отошёл в драг стор'
+  ActivityType: 'playing' # playing: играет в , listening: слушает , watching: смотрит .
+  ActivityText: 'Пукает в пакетик' # текст активности
+
+  Link:
+    Enable: true # привязка дискорд аккаунта к майнкрафту
+    NoLink: "<gradient:#F2C6DE:#E43A96>Вы не привязали аккаунт, для привязки пропишите /привязка {playerName} {code}, в любом канале дискорда</gradient>"
+    InvalidNickOrCode: "Неверный код или ник. Предоставьте верный ник и код"
+    Successful: "Успешно привязан аккаунт {DiscordName} к аккаунту {MinecraftName}"
+    InvalidArgs: "Ошибка с аргументами в команде!"
+
+  UnLink:
+    Enable: true
+    NoLink: "У вас нет привявки по этому не получится что то отвязать"
+    Successful: "Успешно отвзязан ваш аккаунт {DiscordName} от аккаунта {MinecraftName}!"
+
+  Console:
+    Blacklist-commands:
+      - "op"
+      - "deop"
+
+
+
+
+  Sync:  # Настройки синхронизации
+    Enable: true  # Включить или выключить синхронизацию
+    Minecraft-to-discord: true  # Отправлять сообщения из Minecraft в Discord
+    Discord-to-minecraft: true  # Отправлять сообщения из Discord в Minecraft
+    FromMinecraftToDiscord: '' # В СКОРОМ ОБНОВЛЕНИИ!
+    FromDiscordToMinecraft: '&b DISCORD &r{user}&8: {message}'  # Формат сообщений, отправляемых в Minecraft | {role} - роль юзера,
+    FromDiscordToMinecraft_Sound: 'ENTITY_ALLAY_DEATH' # Звук который будет вопроизведен при сообщении в майнкрафт из дискорда
+    BanWords:
+      - "нигер"
+      - "нага"
+      - "сопля"
+
+Server:
+  Start:  # Сообщение при запуске сервера
+    Enable: true  # Включить или выключить сообщение при запуске сервера
+    Message: 'Сервер успешно запущен!'  # Сообщение, которое будет отображаться при запуске сервера
+
+
+  Stop:  # Сообщение при остановке сервера
+    Enable: true  # Включить или выключить сообщение при остановке сервера
+    Message: 'Сервер остановлен!'  # Сообщение, которое будет отображаться при остановке сервера
+
+Messages:
+  # 1 - https://media.discordapp.net/attachments/1181384736044748881/1248205306417123423/image.png?ex=6662d147&is=66617fc7&hm=a903f3ffba9aae9d58442286580c16472e014bc2b7ce348f485e3abc4e63374a&=&format=webp&quality=lossless&width=548&height=178 , 2-https://media.discordapp.net/attachments/1181384736044748881/1248205518023954535/image.png?ex=6662d17a&is=66617ffa&hm=f3c427ff67518a2bb19700a62fb0a6fa2a8fb27241a3f63d38afac5f1ce85bc8&=&format=webp&quality=lossless&width=362&height=142
+  DiscordFormat: 1
+  Join:  # Сообщение при входе игрока на сервер
+    Enable: true  # Включить или выключить сообщение при входе игрока на сервер
+    Message: '&e{player} присоединился к игре'  # Сообщение, которое будет отображаться при входе игрока на сервер
+    Sound: 'ENTITY_EXPERIENCE_ORB_PICKUP'  # Звук, который будет проигрываться при выходе игрока с сервера https://www.digminecraft.com/lists/sound_list_pc.php. Для выключения вместо названия пишите disable
+    Discord:
+      Text: ''
+      Color: '' # Только HEX цвета
+
+  Leave:  # Сообщение при выходе игрока с сервера
+    Enable: true  # Включить или выключить сообщение при выходе игрока с сервера
+    Message: '&e{player} покинул игру'  # Сообщение, которое будет отображаться при выходе игрока с сервера
+    Sound: 'ENTITY_EXPERIENCE_ORB_PICKUP'  # Звук, который будет проигрываться при выходе игрока с сервера https://www.digminecraft.com/lists/sound_list_pc.php. Для выключения вместо названия пишите disable
+    Discord:
+      Text: ''
+      Color: '' # Только HEX цвета
+
+  Death:  # Сообщение при смерти игрока
+    Enable: true  # Включить или выключить сообщение при смерти игрока
+    Message: '&c{player} умер от {cause}'  # Сообщение, которое будет отображаться при смерти игрока
+    Sound: 'ENTITY_BAT_DEATH'  # Звук, который будет проигрываться при выходе игрока с сервера https://www.digminecraft.com/lists/sound_list_pc.php. Для выключения вместо названия пишите disable
+    Discord:
+      Text: ''
+      Color: '' # Только HEX цвета
+
+
+
+Commands:
+  Pm:  # Команда для отправки приватных сообщений
+    Enable: true  # Включить или выключить команду для отправки приватных сообщений
+    Format: '&6[ЛС] &r{sender} -> {receiver}: {message}'  # Формат приватных сообщений
+    Sound: ''  # Звук, который будет проигрываться при выходе игрока с сервера https://www.digminecraft.com/lists/sound_list_pc.php. Для выключения вместо названия пишите disable
+  PmToDiscord:
+    Enable: true
+    Embed:
+      Enabled: true
+      Title: 'Сообщение от игрока {sender}'
+      Description: '{message}'
+      Color: ''
+    Message:
+      Enabled: false
+      Message: '{sender} отправил вам сообщение! \n {message}'

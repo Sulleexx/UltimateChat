@@ -1,0 +1,9 @@
+Players:
+  example:
+    JoinMessages: false
+    LeaveMessages: true
+    DeathMessages: false
+    DiscordMessages: true
+    PmAllow: true
+    SpyEnable: true
+
