@@ -41,6 +41,7 @@ Discord:
   Enable: false # false | true
   Token: 'TOKEN'  # Токен вашего бота Discord
   ChannelId: 'CHAT_ID'  # ID канала Discord, в который будут отправляться сообщения
+  GuildId: 'id'
   ConsoleChannelId: '' # ID канала Discord, в которой будет консоль
   BotStatus: 'сулекс отошёл в драг стор'
   ActivityType: 'playing' # playing: играет в , listening: слушает , watching: смотрит .
@@ -124,11 +125,7 @@ Commands:
     Sound: ''  # Звук, который будет проигрываться при выходе игрока с сервера https://www.digminecraft.com/lists/sound_list_pc.php. Для выключения вместо названия пишите disable
   PmToDiscord:
     Enable: true
-    Embed:
-      Enabled: true
-      Title: 'Сообщение от игрока {sender}'
-      Description: '{message}'
-      Color: ''
-    Message:
-      Enabled: false
-      Message: '{sender} отправил вам сообщение! \n {message}'
+    Title: 'Сообщение от игрока %sender%' # %sender% %player% %message%
+    Description: '%message%' # %sender% %player% %message%
+    Color: '#FF0000' # Hex цвет
+    Footer: "Сообщение отправлено через UltimateChat <3" # Footer

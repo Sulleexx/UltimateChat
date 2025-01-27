@@ -5,6 +5,7 @@ import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 import org.apache.logging.log4j.LogManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import sullexxx.ultimatechat.commands.PmCommand;
 import sullexxx.ultimatechat.commands.UltimateChatCommand;
 import sullexxx.ultimatechat.configuration.LanguageConfig;
 import sullexxx.ultimatechat.configuration.LinksConfig;
@@ -29,6 +30,7 @@ public final class UltimateChat extends JavaPlugin {
         saveDefaultConfig();
         reloadConfig();
         LanguageConfig.save();
+        new PmCommand(this);
 
         getCommand("ultimatechat").setExecutor(new UltimateChatCommand(this));
         getCommand("ultimatechat").setTabCompleter(new UltimateChatCommand(this));

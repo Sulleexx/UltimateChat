@@ -69,6 +69,15 @@ public class LanguageConfig {
         return doubleFormat(rawString);
     }
 
+    public static Component getFormattedString(String path, String player, String target, String message) {
+        FileConfiguration confige = UltimateChat.getInstance().getConfig();
+        String rawString = confige.getString(path, "undefined")
+                .replace("{sender}", player)
+                .replace("{receiver}", target)
+                .replace("{message}", message);
+        return doubleFormat(rawString);
+    }
+
     public static YamlConfiguration config() {
         return config;
     }

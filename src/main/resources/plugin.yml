@@ -1,8 +1,11 @@
 name: UltimateChat
 version: '${project.version}'
 main: sullexxx.ultimatechat.UltimateChat
-api-version: '1.20'
+api-version: '1.21'
 commands:
   ultimatechat:
     aliases: [ "uc", "chat", "ultimate" ]
     permission: ultimatechat.command.main.use
+  msg:
+    usage: /msg <игрок> <сообщение>
+    aliases: [ pm, tell ]

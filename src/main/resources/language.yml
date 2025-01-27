@@ -12,8 +12,10 @@ Pm: # Приватные сообщения
   SelfMessage: ""
   TargetNotExist: ""
   PluginMute: ""
-  PmDisabledMinecraft: ""
-  PmDisabledDiscord: ""
+  PmDisabledMinecraft: "<gradient:#FF0000:#4A0D0D>[ЛС] Личные сообщения отключены."
+  DiscordConnect: "<gradient:#FF0000:#4A0D0D>[ЛС] Дискорд не подключен к серверу."
+  DiscordSuccess: "<gradient:#acabff:#00ecff>[ЛС] Успешно отправлено в лс дискорда!</gradient>"
+  DiscordFailed: "<gradient:#acabff:#00ecff>[ЛС] Не удалось отправить в лс дискорда!</gradient>"
 Global:
   NoPermission: "<gradient:#FF0000:#4A0D0D>[UltimateChat] У вас нет прав."
   NotEnoughArgs: "<gradient:#FF0000:#4A0D0D>[UltimateChat] Не достачно аргументов!"
