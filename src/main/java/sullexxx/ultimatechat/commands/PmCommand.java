@@ -66,12 +66,38 @@ public class PmCommand implements CommandExecutor, TabCompleter {
                 Sound sound = Sound.valueOf(soundName);
                 target.playSound(target.getLocation(), sound, 1.0f, 1.0f);
             } catch (IllegalArgumentException e) {
-                UltimateChat.getInstance().getLogger().warning("Звук " + soundName + " не найден. Проверьте конфигурацию.");
+                UltimateChat.getInstance().getLogger().warning("Sound " + soundName + " not found. Check configuration.");
             }
         }
     }
 
-    private void handleOfflinePlayer(Player sender, String targetName, String message) {
+    public static void sendPrivateMessageFromDiscord(String sender, Player target, String message, String targetName) {
+        Component formattedMessage = LanguageConfig.getFormattedString("Commands.Pm.FormatDiscord", sender, targetName, message);
+        target.sendMessage(formattedMessage);
+
+        String soundName = UltimateChat.getInstance().getConfig().getString("Sound", "disable").toUpperCase();
+
+        if (!soundName.equalsIgnoreCase("disable")) {
+            try {
+                Sound sound = Sound.valueOf(soundName);
+                target.playSound(target.getLocation(), sound, 1.0f, 1.0f);
+            } catch (IllegalArgumentException e) {
+                UltimateChat.getInstance().getLogger().warning("Sound " + soundName + " not found. Check configuration.");
+            }
+        }
+    }
+
+    public static boolean handleOfflinePlayerFromDiscord(String sender, String targetName, String message) {
+        boolean isSent = DiscordPrivateMessages.sendPrivateMessage(targetName, message, sender);
+
+        if (isSent) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public static void handleOfflinePlayer(Player sender, String targetName, String message) {
         if (!UltimateChat.getInstance().getConfig().getBoolean("Discord.Enable")) {
             sender.sendMessage(LanguageConfig.getFormattedString("Pm.DiscordConnect"));
             return;
@@ -95,7 +121,7 @@ public class PmCommand implements CommandExecutor, TabCompleter {
                 completions.add(player.getName());
             }
         } else if (args.length == 2) {
-            completions.add("<сообщение>");
+            completions.add("<message>");
         }
 
         return completions;

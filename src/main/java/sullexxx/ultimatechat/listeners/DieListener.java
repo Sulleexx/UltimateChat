@@ -12,6 +12,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import sullexxx.ultimatechat.UltimateChat;
 import sullexxx.ultimatechat.configuration.PlayerSettings;
 import sullexxx.ultimatechat.discord.DiscordConnect;
+import sullexxx.ultimatechat.utilities.BruhHelper;
 
 import java.util.Optional;
 
@@ -72,11 +73,11 @@ public class DieListener implements Listener {
             try {
                 return Optional.of(Sound.valueOf(soundName.toUpperCase()));
             } catch (IllegalArgumentException e) {
-                UltimateChat.getInstance().getLogger().warning("Не правильное название звука в config.yml: " + soundName + ". Используется обычный звук.");
+                BruhHelper.WrongSoundName(soundName);
                 return Optional.of(defaultSound);
             }
         } else if (soundName.contains("disable")){
-            UltimateChat.getInstance().getLogger().warning("Звук отключен в: config.yml. Звука не будет");
+            BruhHelper.DisabledSound();
         }
         return Optional.empty();
     }

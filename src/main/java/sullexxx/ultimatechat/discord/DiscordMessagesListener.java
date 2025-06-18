@@ -95,11 +95,11 @@ public class DiscordMessagesListener extends ListenerAdapter {
             try {
                 return Optional.of(Sound.valueOf(soundName.toUpperCase()));
             } catch (IllegalArgumentException e) {
-                plugin.getLogger().warning("Не правильное название звука в config.yml: " + soundName + ". Используется обычный звук.");
+                plugin.getLogger().warning("Not correct sound name in config.yml: " + soundName + ". Using default sound.");
                 return Optional.of(defaultSound);
             }
         } else if (soundName.contains("disable")){
-            plugin.getLogger().warning("Звук отключен в: config.yml. Звука не будет");
+            plugin.getLogger().warning("Sound disabled in: config.yml.");
         }
         return Optional.empty();
     }

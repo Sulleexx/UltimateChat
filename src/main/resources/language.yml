@@ -1,48 +1,99 @@
-#
-#  Файл локализации сообщений плагина
-#
-#  Поля, у которых упомянут игрок поддерживают плейсхолдер {player}
-#  Так же, если поле является удаленым и не является обьязательным, то оно будет проигнорировано.
-#  Если сообщения пустые, то они тоже игнорируются.
-#
-#  Почти все сообщения используют формат текста MiniMessage и Legacy
-#
+# Plugin message localization file with explanatory comments (in English)
+# Fields mentioning players support the placeholder {player}
+# Deprecated fields are ignored if not mandatory
+# Empty messages are ignored
+# Most messages use MiniMessage and Legacy text formats
 
-Pm: # Приватные сообщения
-  SelfMessage: ""
-  TargetNotExist: ""
-  PluginMute: ""
-  PmDisabledMinecraft: "<gradient:#FF0000:#4A0D0D>[ЛС] Личные сообщения отключены."
-  DiscordConnect: "<gradient:#FF0000:#4A0D0D>[ЛС] Дискорд не подключен к серверу."
-  DiscordSuccess: "<gradient:#acabff:#00ecff>[ЛС] Успешно отправлено в лс дискорда!</gradient>"
-  DiscordFailed: "<gradient:#acabff:#00ecff>[ЛС] Не удалось отправить в лс дискорда!</gradient>"
+DiscordCommands:
+  ConnectCommand:
+    Name: "link"                # Command name to link a Discord account to the Minecraft server
+    Description: "Connect account to minecraft server"  # Description shown in command tooltip
+    Option-1:
+      Nickname: "nickname"      # Name of the first option: player's nickname for linking
+      Description: "Your nickname"  # Description for the nickname option
+    Option-2:
+      Code: "code"              # Name of the second option: verification code
+      Description: "Your code"  # Description for the code option
+  DisconnectCommand:
+    Name: "unlink"              # Command name to unlink accounts
+    Description: "Remove pair with your accounts"  # Description shown in command tooltip
+
+Ball:
+  Usage: "&cUsage: /ball <question>"                # Usage hint for the Magic Ball command
+  Format: "&b'-{question}' Magic Ball answers: &e{answer}"  # Format of the Magic Ball's response
+  Answer1: "Yes"               # Possible answer: Yes
+  Answer2: "No"                # Possible answer: No
+  Answer3: "Maybe"             # Possible answer: Maybe
+  Answer4: "Ask later"         # Possible answer: Ask later
+  Answer5: "Definitely not"    # Possible answer: Definitely not
+
+Try:
+  Usage: "&cUsage: /try <action>"                   # Usage hint for the /try command
+  Success: "&a{player} tries to {value} and succeeds!"  # Message displayed on successful attempt
+  Fail: "&c{player} tries to {value} and fails!"   # Message displayed on failed attempt
+
+Flip:
+  Format: "&6{player} flips a coin: &e{value}"     # Format of the coin flip result
+  Heads: "Heads"              # Text for heads
+  Tails: "Tails"              # Text for tails
+
+EntityInfo:
+  HealthFormat: "{health}|{max_health}❤"  # Format for displaying current and max health
+  Format: "{entityName}-{healthInfo}"    # General format for entity information
+  COW: "Lady Cow"             # Custom display name for cows (can be set for any entity)
+
+Dice:
+  Format: "&6{player} rolls a dice: &e{value}"  # Format for dice roll result
+
+Pm: # Private Messages settings
+  ModalMenuReplyDiscord:
+    Button:
+      Label: "Reply"            # Label for the reply button
+      Color: "Primary"         # Button color (Danger = red; Primary = blue; Secondary = gray; Success = green)
+    Title: "Reply to "         # Title of the modal (receiver's nickname appended after)
+    Label: "Your Reply"         # Label for the reply input field
+    Placeholder: "Enter your reply message here..."  # Placeholder text in the reply input
+    Successful_reply: "Your reply has been sent to {player}!"   # Message on successful send
+    UnSuccessful_reply: "Your reply has not been sent to {player}!"  # Message on send failure
+  PmDisabledMinecraft: "<gradient:#FF0000:#4A0D0D>[PM] Private messages are disabled."  # Shown when Minecraft private messages are disabled
+  DiscordConnect: "<gradient:#FF0000:#4A0D0D>[PM] Discord is not connected to the server."  # Shown when Discord connection is unavailable
+  DiscordSuccess: "<gradient:#acabff:#00ecff>[PM] Successfully sent to Discord PM!</gradient>"  # Shown on successful Discord DM send
+  DiscordFailed: "<gradient:#acabff:#00ecff>[PM] Failed to send to Discord PM!</gradient>"  # Shown on Discord DM send failure
+
 Global:
-  NoPermission: "<gradient:#FF0000:#4A0D0D>[UltimateChat] У вас нет прав."
-  NotEnoughArgs: "<gradient:#FF0000:#4A0D0D>[UltimateChat] Не достачно аргументов!"
-  UnknownCommand: "<gradient:#FF0000:#4A0D0D>[UltimateChat] Неизвестная команда! /uc help"
-  NotPlayer: "<gradient:#FF0000:#4A0D0D>[UltimateChat] Вы не игрок!"
-  UnknownError: "<gradient:#FF0000:#4A0D0D>[UltimateChat] Неизвестная ошибка!"
-  SuccessReloadConfig: "<gradient:#acabff:#00ecff>[UltimateChat] Успешная перезагрузка конфига!</gradient>"
-  SuccessReloadLanguage: "<gradient:#acabff:#00ecff>[UltimateChat] Успешная перезагрузка конфига сообщении!</gradient>"
-  SuccessReloadAll: "<gradient:#acabff:#00ecff>[UltimateChat] Успешная перезагрузка!</gradient>"
+  NoPermission: "<gradient:#FF0000:#4A0D0D>[UltimateChat] You don't have permission."  # Shown when user lacks permission
+  NotEnoughArgs: "<gradient:#FF0000:#4A0D0D>[UltimateChat] Not enough arguments!"      # Shown when not enough arguments are provided
+  UnknownCommand: "<gradient:#FF0000:#4A0D0D>[UltimateChat] Unknown command! /uc help" # Shown for unrecognized commands
+  InvalidArgs: "<gradient:#FF0000:#4A0D0D>[UltimateChat] Invalid arguments! /uc help"  # Shown for invalid argument values
+  NotPlayer: "<gradient:#FF0000:#4A0D0D>[UltimateChat] You are not a player!"     # Shown when a non-player attempts a player-only command
+  UnknownError: "<gradient:#FF0000:#4A0D0D>[UltimateChat] Unknown error!"         # Shown for unexpected errors
+  SuccessReloadConfig: "<gradient:#acabff:#00ecff>[UltimateChat] Config reloaded successfully!</gradient>"  # Shown after config reload
+  SuccessReloadLanguage: "<gradient:#acabff:#00ecff>[UltimateChat] Message config reloaded successfully!</gradient>"  # Shown after language file reload
+  SuccessReloadAll: "<gradient:#acabff:#00ecff>[UltimateChat] Reloaded successfully!</gradient>"  # Shown after full reload
+
 Messages:
-  JoinMessagesOn: "<gradient:#0873FB:#AAAEFE>[UltimateChat] Вы успешно включили отображение сообщении о входе.</gradient>"
-  JoinMessagesOff: "<gradient:#0873FB:#AAAEFE>[UltimateChat] Вы успешно отключили отображение сообщении о входе.</gradient>"
-  LeaveMessagesOn: "<gradient:#0873FB:#AAAEFE>[UltimateChat] Вы успешно включили отображение сообщении о выходе.</gradient>"
-  LeaveMessagesOff: "<gradient:#0873FB:#AAAEFE>[UltimateChat] Вы успешно отключили отображение сообщении о выходе.</gradient>"
-  DeathMessagesOn: "<gradient:#0873FB:#AAAEFE>[UltimateChat] Вы успешно включили отображение сообщении о смерти.</gradient>"
-  DeathMessagesOff: "<gradient:#0873FB:#AAAEFE>[UltimateChat] Вы успешно отключили отображение сообщении о смерти.</gradient>"
-  DiscordMessagesOn: "<gradient:#0873FB:#AAAEFE>[UltimateChat] Вы успешно включили отображение сообщении из дискорда.</gradient>"
-  DiscordMessagesOff: "<gradient:#0873FB:#AAAEFE>[UltimateChat] Вы успешно отключили отображение сообщении из дискорда.</gradient>"
+  JoinMessagesOn: "<gradient:#0873FB:#AAAEFE>[UltimateChat] You've successfully enabled join messages display.</gradient>"  # Shown when join messages are enabled
+  JoinMessagesOff: "<gradient:#0873FB:#AAAEFE>[UltimateChat] You've successfully disabled join messages display.</gradient>" # Shown when join messages are disabled
+  LeaveMessagesOn: "<gradient:#0873FB:#AAAEFE>[UltimateChat] You've successfully enabled leave messages display.</gradient>" # Shown when leave messages are enabled
+  LeaveMessagesOff: "<gradient:#0873FB:#AAAEFE>[UltimateChat] You've successfully disabled leave messages display.</gradient>" # Shown when leave messages are disabled
+  DeathMessagesOn: "<gradient:#0873FB:#AAAEFE>[UltimateChat] You've successfully enabled death messages display.</gradient>" # Shown when death messages are enabled
+  DeathMessagesOff: "<gradient:#0873FB:#AAAEFE>[UltimateChat] You've successfully disabled death messages display.</gradient>" # Shown when death messages are disabled
+  DiscordMessagesOn: "<gradient:#0873FB:#AAAEFE>[UltimateChat] You've successfully enabled Discord messages display.</gradient>" # Shown when Discord messages are enabled
+  DiscordMessagesOff: "<gradient:#0873FB:#AAAEFE>[UltimateChat] You've successfully disabled Discord messages display.</gradient>" # Shown when Discord messages are disabled
+  AutoMessageOff: "<gradient:#0873FB:#AAAEFE>[UltimateChat] You've successfully disabled auto message display.</gradient>" # Shown when auto messages are disabled
+  AutoMessageOn: "<gradient:#0873FB:#AAAEFE>[UltimateChat] You've successfully enabled auto message display.</gradient>" # Shown when auto messages are enabled
+  AutoMessageFailed: "<gradient:#0873FB:#AAAEFE>[UltimateChat] You've failed auto message display. Wrong message id"  # Shown when auto message fails due to invalid ID
+
 Chats:
-  NotInRadius: "<gradient:#FF0B00:#751915:#FF0000>[UltimateChat] Вас никто не услышал.</gradient>"
-  NoPermissionToChat: "<gradient:#FF0B00:#751915:#FF0000>[UltimateChat] Нет прав для отправки сообщении в данный чат.</gradient>"
-  CooldownMessage: "<gradient:#FF0B00:#751915:#FF0000>[UltimateChat] Пожалуйста, подождите немного перед отправкой следующего сообщения.</gradient>"
-  DisabledChat: "<gradient:#FF0B00:#751915:#FF0000>[UltimateChat] Чат выключен.</gradient>"
+  NotInRadius: "<gradient:#FF0B00:#751915:#FF0000>[UltimateChat] Nobody heard you.</gradient>"  # Shown when no one is within chat radius
+  NoPermissionToChat: "<gradient:#FF0B00:#751915:#FF0000>[UltimateChat] No permission to send messages in this chat.</gradient>" # Shown when user lacks chat permissions
+  CooldownMessage: "<gradient:#FF0B00:#751915:#FF0000>[UltimateChat] Please wait before sending your next message.</gradient>" # Shown when user is on chat cooldown
+  DisabledChat: "<gradient:#FF0B00:#751915:#FF0000>[UltimateChat] Chat is disabled.</gradient>" # Shown when chat is globally disabled
+  BlacklistedWord: "<gradient:#FF0B00:#751915:#FF0000>[UltimateChat] Your message contains a blacklisted word and cannot be sent. Word: {word}</gradient>" # Shown when message contains a banned word
+
 Help:
-  - "             <gradient:#CB2D3E:#EF473A>Помощь по плагину UltimateChat"
-  - "<gradient:#CB2D3E:#EF473A>1./uc help - Помощь по плагину"
-  - "<gradient:#CB2D3E:#EF473A>2./uc reload (all/language/config) - Перезагрузка плагина!"
-  - "<gradient:#CB2D3E:#EF473A>3./uc messages (join/leave/death/discord) (true/false) - Выключение/включение определенных сообщении!"
-  - "<gradient:#CB2D3E:#EF473A>4./pm (Player) (Message) - Личные сообщения по майнкрафту"
-  - "<gradient:#CB2D3E:#EF473A>5./pm (DiscordNickname) (Message) - Личные сообщения в дискорд"
+  - "             <gradient:#CB2D3E:#EF473A>UltimateChat Plugin Help"
+  - "<gradient:#CB2D3E:#EF473A>1./uc help - Plugin help"
+  - "<gradient:#CB2D3E:#EF473A>2./uc reload (all/language/config) - Plugin reload!"
+  - "<gradient:#CB2D3E:#EF473A>3./uc messages (join/leave/death/discord/auto_message) (true/false) - Toggle specific messages!"
+  - "<gradient:#CB2D3E:#EF473A>4./pm (Player) (Message) - Minecraft/Discord private messages"

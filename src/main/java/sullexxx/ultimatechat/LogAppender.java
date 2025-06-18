@@ -33,7 +33,7 @@ public class LogAppender extends AbstractAppender {
                     if (messages.length() != 0) {
                         messages = messages.replaceAll("\u001B\\[[;\\d]*m", "");
                         if (messages.length() > 2000) {
-                            String messageTooLong = "\n\nЭто сообщение превысило лимит сообщений в Discord (2000 символов), поэтому остальная часть была вырезана. Чтобы увидеть его полностью, пожалуйста, проверьте консоль!";
+                            String messageTooLong = "\n\nThis message exceeded the Discord message limit (2000 characters), so the rest was cut out. To see it in full, please check your console!";
                             messages = messages.substring(0, (1999 - messageTooLong.length()) - 6);
                             messages += messageTooLong;
                         }
@@ -47,20 +47,20 @@ public class LogAppender extends AbstractAppender {
                                 if (channel != null) {
                                     channel.sendMessage("```" + messages + "```").queue();
                                 } else {
-                                    Bukkit.getLogger().severe("[UC] Неверный ID канала '" + channelId + "'! Убедитесь, что в конфигурационном файле указан правильный ID канала! Отключение модуля консоли...");
+                                    Bukkit.getLogger().severe("[UC] Invalid channel ID '" + channelId + "'! Make sure the correct channel ID is specified in the configuration file! Disabling console module...");
                                     cancel();
                                 }
                             } catch (NumberFormatException numberFormatException) {
-                                Bukkit.getLogger().severe("[UC] Неверный формат ID канала '" + channelId + "'! Отключение модуля консоли...");
+                                Bukkit.getLogger().severe("[UC] Invalid channel ID format '" + channelId + "'! Disabling console module...");
                                 cancel();
                             }
                         } else {
-                            Bukkit.getLogger().severe("[UC] ID канала не найден в конфигурационном файле! Отключение модуля консоли...");
+                            Bukkit.getLogger().severe("[UC] Channel ID not found in config file! Disabling console module...");
                             cancel();
                         }
                     }
                 } catch (Exception e) {
-                    Bukkit.getLogger().severe("[UC] Произошла ошибка при отправке сообщений в Discord: " + e.getMessage());
+                    Bukkit.getLogger().severe("[UC] There was an error sending messages to Discord: " + e.getMessage());
                 }
                 messages = "";
             }

@@ -13,6 +13,7 @@ import sullexxx.ultimatechat.UltimateChat;
 import sullexxx.ultimatechat.configuration.LanguageConfig;
 import sullexxx.ultimatechat.configuration.PlayerSettings;
 import sullexxx.ultimatechat.discord.DiscordConnect;
+import sullexxx.ultimatechat.utilities.BruhHelper;
 import sullexxx.ultimatechat.utilities.LinkCheck;
 import sullexxx.ultimatechat.utilities.LinkCode;
 
@@ -83,11 +84,11 @@ public class JoinListener implements Listener {
             try {
                 return Optional.of(Sound.valueOf(soundName.toUpperCase()));
             } catch (IllegalArgumentException e) {
-                UltimateChat.getInstance().getLogger().warning("Incorrect sound name in config.yml: " + soundName + ". Using default sound.");
+                BruhHelper.WrongSoundName(soundName);
                 return Optional.of(defaultSound);
             }
         } else if (soundName.contains("disable")){
-            UltimateChat.getInstance().getLogger().warning("Звук отключен в config.yml. Звука не будет");
+            BruhHelper.DisabledSound();
         }
         return Optional.empty();
     }

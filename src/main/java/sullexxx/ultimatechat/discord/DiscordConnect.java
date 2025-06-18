@@ -12,11 +12,13 @@ import net.dv8tion.jda.api.interactions.commands.OptionType;
 import net.dv8tion.jda.api.interactions.commands.build.Commands;
 import org.bukkit.configuration.file.FileConfiguration;
 import sullexxx.ultimatechat.UltimateChat;
+import sullexxx.ultimatechat.configuration.LanguageConfig;
 import sullexxx.ultimatechat.utilities.DiscordBotHelper;
 import sullexxx.ultimatechat.utilities.DiscordEmbedHelper;
 import sullexxx.ultimatechat.utilities.DiscordWebhooks;
 
 import java.awt.*;
+import java.util.Optional;
 
 public class DiscordConnect extends ListenerAdapter {
     private static FileConfiguration config;
@@ -33,15 +35,15 @@ public class DiscordConnect extends ListenerAdapter {
             JDABuilder builder = setupJDA();
             jda = builder.build();
             jda.updateCommands().addCommands(
-                    Commands.slash("привязка", "Привязать аккаунт к майнкрафт серверу")
-                            .addOption(OptionType.STRING, "ник", "Ваш ник", true)
-                            .addOption(OptionType.STRING, "код", "Ваш код", true),
-                    Commands.slash("убрать_привязку", "Убрать привязку от аккаунта")
+                    Commands.slash(LanguageConfig.getString("DiscordCommands.ConnectCommand.Name"), LanguageConfig.getString("DiscordCommands.ConnectCommand.Description"))
+                            .addOption(OptionType.STRING, LanguageConfig.getString("DiscordCommands.ConnectCommand.Option-1.Nickname"), LanguageConfig.getString("DiscordCommands.ConnectCommand.Option-1.Description"), true)
+                            .addOption(OptionType.STRING, LanguageConfig.getString("DiscordCommands.ConnectCommand.Option-2.Code"), LanguageConfig.getString("DiscordCommands.ConnectCommand.Option-2.Description"), true),
+                    Commands.slash(LanguageConfig.getString("DiscordCommands.DisconnectCommand.Name"), LanguageConfig.getString("DiscordCommands.DisconnectCommand.Description"))
             ).queue();
-
+            DiscordWebhooks.deleteWebhooksInChannel();
             this.webhookUrl = DiscordWebhooks.createWebhook(config.getString("Discord.ChannelId"), "UltimateChatWebhook", config.getString("Discord.Token"));
         } catch (Exception e) {
-            System.out.println("Ошибка: " + e.getMessage());
+            System.out.println("Error: " + e.getMessage());
         }
     }
 
@@ -107,19 +109,10 @@ public class DiscordConnect extends ListenerAdapter {
         DiscordEmbedHelper.sendEmbed(channel, messageEmbed);
     }
 
-
     @Override
     public void onMessageReceived(MessageReceivedEvent event) {
         User user = event.getAuthor();
         if (user.isBot()) return;
-
-        String message = event.getMessage().getContentRaw();
-        if (message.equalsIgnoreCase("!ping")) {
-            event.getChannel().sendMessage("Pong!").queue();
-            if (webhookUrl != null) {
-                DiscordWebhooks.sendWebhookMessage(webhookUrl, "Ping command received!", user.getName());
-            }
-        }
     }
 
     public static boolean isDiscordEnabled() {
@@ -143,6 +136,5 @@ public class DiscordConnect extends ListenerAdapter {
 
     public void shutdown() {
         DiscordWebhooks.deleteWebhook(webhookUrl, config.getString("Discord.Token"));
-        System.out.println("Бот выключен и вебхук удален");
     }
 }

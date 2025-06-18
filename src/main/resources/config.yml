@@ -1,131 +1,140 @@
 General:
   Chats:
-    Local:  # Локальный чат
-      DisplayName: 'local chat' # Название чата
-      Enable: true  # Включить или выключить локальный чат
-      Range: 100  # Диапазон, в котором игроки могут видеть сообщения локального чата
-      Cooldown: -1  # Задержка между сообщениями (в секундах)
-      Permission: 'ultimatechat.localchat' # Если не нужны права на чат то пишите 'none'
-      Format: '&b LOCALE &r{prefix}{player}{suffix}&8: {message}'  # Формат сообщений в локальном чате
+    # Range:
+    #      -0 = All players see the message only in the world where it was sent.
+    #      -1 = All players see the message in all worlds, but it was not sent to discord.
+    #      -2 = All players see the message in all worlds, and sent to Discord.
+    Local:  # Local chat
+      DisplayName: 'local chat' # Chat name
+      Enable: true  # Enable or disable local chat
+      Range: 100  # Range within which players can see local chat messages
+      Cooldown: -1  # Cooldown between messages (in seconds)
+      Permission: "none" # Write 'none' if no permission required
+      Format: '&b LOCAL &r{prefix}{player}{suffix}&8: {message}'  # Message format in local chat
 
-    Global:  # Глобальный чат
-      DisplayName: 'global chat'  # Название чата
-      Enable: true  # Включить или выключить глобальный чат
-      Range: -2  # Диапазон, в котором игроки могут видеть сообщения глобального чата
-      Cooldown: -1  # Задержка между сообщениями (в секундах)
-      Symbol: '!'  # Символ для отправки сообщения в глобальный чат
-      Permission: 'ultimatechat.globalchat' # Если не нужны права на чат то пишите 'none'
-      Format: '&b GLOBAL &r{prefix}{player}{suffix}&8: {message}'  # Формат сообщений в глобальном чате
+    Global:  # Global chat
+      DisplayName: 'global chat'  # Chat name
+      Enable: true  # Enable or disable global chat
+      Range: -2  # Range within which players can see global chat messages
+      Cooldown: -1  # Cooldown between messages (in seconds)
+      Symbol: '!'  # Symbol to send a message to global chat
+      Permission: "none" # Write 'none' if no permission required
+      Format: '&b GLOBAL &r{prefix}{player}{suffix}&8: {message}'  # Message format in global chat
 
-    Staff:  # Чат для персонала
-      DisplayName: 'staff chat'  # Название чата
-      Enable: true  # Включить или выключить чат для персонала
-      Range: -2  # Диапазон, в котором игроки могут видеть сообщения чата персонала
-      Cooldown: -1  # Задержка между сообщениями (в секундах)
-      Symbol: '#'  # Символ для отправки сообщения в чат персонала
-      Permission: 'ultimatechat.staffchat' # Если не нужны права на чат то пишите 'none'
-      Format: '&b STAFF &r{prefix}{player}{suffix}&8: {message}'  # Формат сообщений в чате персонала
+    Staff:  # Staff chat
+      DisplayName: 'staff chat'  # Chat name
+      Enable: true  # Enable or disable staff chat
+      Range: -2  # Range within which players can see staff chat messages
+      Cooldown: -1  # Cooldown between messages (in seconds)
+      Symbol: '#'  # Symbol to send a message to staff chat
+      Permission: "ultimatechat.staffchat" # Write 'none' if no permission required
+      Format: '&b STAFF &r{prefix}{player}{suffix}&8: {message}'  # Message format in staff chat
 
-      # здесь вы можете создавать свои сообственные чаты по примеру вверху!
-
-    Custom: # Кастом чат
-      DisplayName: 'custom-1'  # Название чата
-      Enable: true # Включить или выключить чат для персонала
-      Range: -2  # Диапазон, в котором игроки могут видеть сообщения чата персонала
-      Cooldown: -1  # Задержка между сообщениями (в секундах)
-      Symbol: '*' # Символ для отправки сообщения в чат персонала
-      Permission: 'ultimatechat.customchat' # Если не нужны права на чат то пишите 'none'
-      Format: '&b CUSTOM &r{prefix}{player}{suffix}&8: {message}'# Формат сообщений в чате
+    Custom: # Custom chat
+      DisplayName: 'custom-1'  # Chat name
+      Enable: true # Enable or disable custom chat
+      Range: -2  # Range within which players can see messages
+      Cooldown: -1  # Cooldown between messages (in seconds)
+      Symbol: '*' # Symbol to send a message
+      Permission: "ultimatechat.customchat" # Write 'none' if no permission required
+      Format: '&b CUSTOM &r{prefix}{player}{suffix}&8: {message}' # Message format
 
 Discord:
   Enable: false # false | true
-  Token: 'TOKEN'  # Токен вашего бота Discord
-  ChannelId: 'CHAT_ID'  # ID канала Discord, в который будут отправляться сообщения
-  GuildId: 'id'
-  ConsoleChannelId: '' # ID канала Discord, в которой будет консоль
-  BotStatus: 'сулекс отошёл в драг стор'
-  ActivityType: 'playing' # playing: играет в , listening: слушает , watching: смотрит .
-  ActivityText: 'Пукает в пакетик' # текст активности
+  Token: 'TOKEN'  # Your Discord bot token
+  ChannelId: 'CHAT_ID'  # Discord channel ID for chat messages
+  GuildId: 'id' # Discord server id
+  ConsoleChannelId: '' # Discord channel ID for console
+  BotStatus: 'suleks went to the drag store'
+  ActivityType: 'playing' # playing: playing , listening: listening to , watching: watching .
+  ActivityText: 'Farting in a bag' # activity text
 
   Link:
-    Enable: true # привязка дискорд аккаунта к майнкрафту
-    NoLink: "<gradient:#F2C6DE:#E43A96>Вы не привязали аккаунт, для привязки пропишите /привязка {playerName} {code}, в любом канале дискорда</gradient>"
-    InvalidNickOrCode: "Неверный код или ник. Предоставьте верный ник и код"
-    Successful: "Успешно привязан аккаунт {DiscordName} к аккаунту {MinecraftName}"
-    InvalidArgs: "Ошибка с аргументами в команде!"
+    Enable: true # link Discord account to Minecraft
+    NoLink: "<gradient:#F2C6DE:#E43A96>Your account is not linked. To link, type /link {player} {code} in any Discord channel</gradient>"
+    InvalidNickOrCode: "Invalid code or nickname. Provide a valid nickname and code"
+    Successful: "Successfully linked account {DiscordName} to account {MinecraftName}"
+    InvalidArgs: "Argument error in command!"
 
   UnLink:
     Enable: true
-    NoLink: "У вас нет привявки по этому не получится что то отвязать"
-    Successful: "Успешно отвзязан ваш аккаунт {DiscordName} от аккаунта {MinecraftName}!"
+    NoLink: "You don't have a linked account, so nothing can be unlinked"
+    Successful: "Successfully unlinked your account {DiscordName} from account {MinecraftName}!"
 
-  Console:
-    Blacklist-commands:
+  Console: # discord console text-channel
+    Blacklist-commands: #
       - "op"
       - "deop"
 
-
-
-
-  Sync:  # Настройки синхронизации
-    Enable: true  # Включить или выключить синхронизацию
-    Minecraft-to-discord: true  # Отправлять сообщения из Minecraft в Discord
-    Discord-to-minecraft: true  # Отправлять сообщения из Discord в Minecraft
-    FromMinecraftToDiscord: '' # В СКОРОМ ОБНОВЛЕНИИ!
-    FromDiscordToMinecraft: '&b DISCORD &r{user}&8: {message}'  # Формат сообщений, отправляемых в Minecraft | {role} - роль юзера,
-    FromDiscordToMinecraft_Sound: 'ENTITY_ALLAY_DEATH' # Звук который будет вопроизведен при сообщении в майнкрафт из дискорда
+  Sync:  # Sync settings between discord and minecraft servers.
+    Enable: true  # Enable or disable synchronization
+    Minecraft-to-discord: true  # Send messages from Minecraft to Discord
+    Discord-to-minecraft: true  # Send messages from Discord to Minecraft
+    FromMinecraftToDiscord:
+      Webhook:
+        Name: '{PlayerName}' # placeholders can be written using {} or %, even PlaceholderAPI ones.
+        Message: '{message}'
+    FromDiscordToMinecraft: '&b DISCORD &r{user}&8: {message}' # Message format sent to Minecraft | {role} - user role,
+    FromDiscordToMinecraft_Sound: 'ENTITY_ALLAY_DEATH' # Sound played for messages from Discord to Minecraft
     BanWords:
-      - "нигер"
-      - "нага"
-      - "сопля"
+      - "nigger"
+      - "naga"
+      - "snot"
 
 Server:
-  Start:  # Сообщение при запуске сервера
-    Enable: true  # Включить или выключить сообщение при запуске сервера
-    Message: 'Сервер успешно запущен!'  # Сообщение, которое будет отображаться при запуске сервера
+  Start:  # Server start message
+    Enable: true  # Enable or disable server start message
+    Message: 'Server started successfully!'  # Message displayed on server start
 
-
-  Stop:  # Сообщение при остановке сервера
-    Enable: true  # Включить или выключить сообщение при остановке сервера
-    Message: 'Сервер остановлен!'  # Сообщение, которое будет отображаться при остановке сервера
+  Stop:  # Server stop message
+    Enable: true  # Enable or disable server stop message
+    Message: 'Server stopped!'  # Message displayed on server stop
 
 Messages:
-  # 1 - https://media.discordapp.net/attachments/1181384736044748881/1248205306417123423/image.png?ex=6662d147&is=66617fc7&hm=a903f3ffba9aae9d58442286580c16472e014bc2b7ce348f485e3abc4e63374a&=&format=webp&quality=lossless&width=548&height=178 , 2-https://media.discordapp.net/attachments/1181384736044748881/1248205518023954535/image.png?ex=6662d17a&is=66617ffa&hm=f3c427ff67518a2bb19700a62fb0a6fa2a8fb27241a3f63d38afac5f1ce85bc8&=&format=webp&quality=lossless&width=362&height=142
-  DiscordFormat: 1
-  Join:  # Сообщение при входе игрока на сервер
-    Enable: true  # Включить или выключить сообщение при входе игрока на сервер
-    Message: '&e{player} присоединился к игре'  # Сообщение, которое будет отображаться при входе игрока на сервер
-    Sound: 'ENTITY_EXPERIENCE_ORB_PICKUP'  # Звук, который будет проигрываться при выходе игрока с сервера https://www.digminecraft.com/lists/sound_list_pc.php. Для выключения вместо названия пишите disable
+  AutoMessages:
+    1:
+      Text: "" # Text
+      Interval: "" # Use: s, m, h, d
+
+  WordsBlackList:
+    - "Suka"
+    - "Puka"
+    - "Duka"
+
+  DiscordFormat: 1 # you can use 1 or 2
+  Join:  # Player join message
+    Enable: true  # Enable or disable player join message
+    Message: '&e{player} joined the game'  # Message displayed when a player joins
+    Sound: 'ENTITY_EXPERIENCE_ORB_PICKUP'  # Sound played on player join
     Discord:
       Text: ''
-      Color: '' # Только HEX цвета
+      Color: '' # HEX colors only
 
-  Leave:  # Сообщение при выходе игрока с сервера
-    Enable: true  # Включить или выключить сообщение при выходе игрока с сервера
-    Message: '&e{player} покинул игру'  # Сообщение, которое будет отображаться при выходе игрока с сервера
-    Sound: 'ENTITY_EXPERIENCE_ORB_PICKUP'  # Звук, который будет проигрываться при выходе игрока с сервера https://www.digminecraft.com/lists/sound_list_pc.php. Для выключения вместо названия пишите disable
+  Leave:  # Player leave message
+    Enable: true  # Enable or disable player leave message
+    Message: '&e{player} left the game'  # Message displayed when a player leaves
+    Sound: 'ENTITY_EXPERIENCE_ORB_PICKUP'  # Sound played on player leave
     Discord:
       Text: ''
-      Color: '' # Только HEX цвета
+      Color: '' # HEX colors only
 
-  Death:  # Сообщение при смерти игрока
-    Enable: true  # Включить или выключить сообщение при смерти игрока
-    Message: '&c{player} умер от {cause}'  # Сообщение, которое будет отображаться при смерти игрока
-    Sound: 'ENTITY_BAT_DEATH'  # Звук, который будет проигрываться при выходе игрока с сервера https://www.digminecraft.com/lists/sound_list_pc.php. Для выключения вместо названия пишите disable
+  Death:  # Player death message
+    Enable: true  # Enable or disable player death message
+    Message: '&c{player} died from {cause}'  # Message displayed on player death
+    Sound: 'ENTITY_BAT_DEATH'  # Sound played on player death
     Discord:
       Text: ''
-      Color: '' # Только HEX цвета
-
-
+      Color: '' # HEX colors only
 
 Commands:
-  Pm:  # Команда для отправки приватных сообщений
-    Enable: true  # Включить или выключить команду для отправки приватных сообщений
-    Format: '&6[ЛС] &r{sender} -> {receiver}: {message}'  # Формат приватных сообщений
-    Sound: ''  # Звук, который будет проигрываться при выходе игрока с сервера https://www.digminecraft.com/lists/sound_list_pc.php. Для выключения вместо названия пишите disable
+  Pm:  # Private message command
+    Enable: true  # Enable or disable private messages
+    Format: '&6[PM] &r{sender} -> {receiver}: {message}'  # Private message format
+    FormatDiscord: '&6[PM from DS] &r{sender} -> {receiver}: {message}'  # Private message format
+    Sound: ''  # Sound for private messages
   PmToDiscord:
     Enable: true
-    Title: 'Сообщение от игрока %sender%' # %sender% %player% %message%
+    Title: 'Message from player %sender%' # %sender% %player% %message%
     Description: '%message%' # %sender% %player% %message%
-    Color: '#FF0000' # Hex цвет
-    Footer: "Сообщение отправлено через UltimateChat <3" # Footer
+    Color: '#FF0000' # Hex color
+    Footer: "Message sent via UltimateChat <3" # Footer

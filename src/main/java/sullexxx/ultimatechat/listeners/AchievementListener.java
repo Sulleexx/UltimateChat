@@ -11,6 +11,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerAdvancementDoneEvent;
 import sullexxx.ultimatechat.UltimateChat;
 import sullexxx.ultimatechat.configuration.PlayerSettings;
+import sullexxx.ultimatechat.utilities.BruhHelper;
 
 import java.util.Optional;
 
@@ -55,11 +56,11 @@ public class AchievementListener implements Listener {
             try {
                 return Optional.of(Sound.valueOf(soundName.toUpperCase()));
             } catch (IllegalArgumentException e) {
-                plugin.getLogger().warning("Не правильное название звука в config.yml: " + soundName + ". Используется обычный звук.");
+                BruhHelper.WrongSoundName(soundName);
                 return Optional.of(defaultSound);
             }
         } else {
-            plugin.getLogger().warning("Звук не указан в: config.yml. Звука не будет");
+            BruhHelper.NoSelectedSound();
         }
         return Optional.empty();
     }

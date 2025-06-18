@@ -9,24 +9,22 @@ import java.io.File;
 import java.io.IOException;
 
 public class LinksConfig {
-    private final JavaPlugin plugin;
+    private static JavaPlugin plugin;
     public static FileConfiguration config;
-    public static File configFile;
-
+    private static File configFile;
+    private static final String DISCORD_KEY = "Discord_ID";
 
     public LinksConfig(JavaPlugin plugin) {
-        this.plugin = plugin;
+        LinksConfig.plugin = plugin;
         loadConfig();
     }
 
     private void loadConfig() {
         configFile = new File(plugin.getDataFolder(), "links-data.yml");
-
         if (!configFile.exists()) {
             configFile.getParentFile().mkdirs();
             plugin.saveResource("links-data.yml", false);
         }
-
         config = YamlConfiguration.loadConfiguration(configFile);
     }
 
@@ -34,49 +32,50 @@ public class LinksConfig {
         try {
             config.save(configFile);
         } catch (IOException e) {
-            e.printStackTrace();
+            plugin.getLogger().severe("Ошибка сохранения links-data.yml: " + e.getMessage());
         }
     }
 
-    public void reloadConfig() {
+    public static void reloadConfig() {
         config = YamlConfiguration.loadConfiguration(configFile);
     }
 
     public static void addDataLink(String player, String value) {
-        config.set("Players." + player + ".Discord_ID", value);
+        config.set("Players." + player + "." + DISCORD_KEY, value);
         saveConfig();
+        reloadConfig();
     }
 
     public static boolean hasLink(String id) {
         ConfigurationSection playersSection = config.getConfigurationSection("Players");
-        if (playersSection != null) {
-            for (String key : playersSection.getKeys(false)) {
-                String discordId = playersSection.getString(key + ".Discord_ID");
-                if (discordId != null && discordId.equals(id)) {
-                    return true;
-                }
-            }
+        if (playersSection == null) return false;
+
+        for (String player : playersSection.getKeys(false)) {
+            String discordId = playersSection.getString(player + "." + DISCORD_KEY);
+            if (id.equals(discordId)) return true;
         }
         return false;
     }
 
     public static String getUsernameById(String id) {
         ConfigurationSection playersSection = config.getConfigurationSection("Players");
-        if (playersSection != null) {
-            for (String key : playersSection.getKeys(false)) {
-                String discordId = playersSection.getString(key + ".Discord_ID");
-                if (discordId != null && discordId.equals(id)) {
-                    return key;
-                }
-            }
+        if (playersSection == null) return null;
+
+        for (String player : playersSection.getKeys(false)) {
+            String discordId = playersSection.getString(player + "." + DISCORD_KEY);
+            if (id.equals(discordId)) return player;
         }
         return null;
     }
 
-
     public static void removeDataLink(String player) {
-        config.set("Players." + player + ".Discord_ID", null);
+        config.set("Players." + player + "." + DISCORD_KEY, null);
+
+        ConfigurationSection playerSection = config.getConfigurationSection("Players." + player);
+        if (playerSection != null && playerSection.getKeys(false).isEmpty()) {
+            config.set("Players." + player, null);
+        }
         saveConfig();
+        reloadConfig();
     }
 }
-

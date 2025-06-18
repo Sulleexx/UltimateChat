@@ -21,9 +21,11 @@ import org.jetbrains.annotations.NotNull;
 import sullexxx.ultimatechat.discord.DiscordConnect;
 import sullexxx.ultimatechat.UltimateChat;
 import sullexxx.ultimatechat.configuration.LanguageConfig;
+import sullexxx.ultimatechat.utilities.BlackListWords;
 import sullexxx.ultimatechat.utilities.DiscordWebhooks;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -39,9 +41,19 @@ public class ChatListener implements Listener {
     @EventHandler
     public void onAsyncChat(AsyncChatEvent event) {
         Player player = event.getPlayer();
-        UUID playerId = player.getUniqueId();
         String plainMessage = PlainTextComponentSerializer.plainText().serialize(event.message());
         FileConfiguration config = UltimateChat.getInstance().getConfig();
+
+        List<String> blackListWords = BlackListWords.blacklistWords;
+        String lowerCaseMessage = plainMessage.toLowerCase();
+
+        for (String word : blackListWords) {
+            if (lowerCaseMessage.contains(word.toLowerCase())) {
+                player.sendMessage(LanguageConfig.getFormattedStringE("Chats.BlacklistedWord", word));
+                event.setCancelled(true);
+                return;
+            }
+        }
 
         Map<String, String> chatSymbols = new HashMap<>();
         config.getConfigurationSection("General.Chats").getKeys(false).forEach(chatSection ->
@@ -74,7 +86,7 @@ public class ChatListener implements Listener {
         UUID playerId = player.getUniqueId();
         String permission = chatConfig.getString("Permission");
 
-        if (!"none".equals(permission) && !player.hasPermission(permission)) {
+        if (permission != null && !"none".equalsIgnoreCase(permission.trim()) && !player.hasPermission(permission.trim())) {
             player.sendMessage(LanguageConfig.getFormattedString("Chats.NoPermissionToChat"));
             event.setCancelled(true);
             return;
@@ -136,22 +148,34 @@ public class ChatListener implements Listener {
 
     private void sendMessage(AsyncChatEvent event, Player player, Component formattedMessage, int range, String cleanedMessage, String permission) {
         event.setCancelled(true);
-
         if (range == -2) {
-            Bukkit.getServer().getOnlinePlayers().forEach(p -> {
-                if (permission == null || permission.isEmpty() || p.hasPermission(permission)) {
-                    p.sendMessage(formattedMessage);
-                }
-            });
-            DiscordWebhooks.sendWebhookMessage(DiscordConnect.webhookUrl, cleanedMessage, player.getName());
+            for (Player p : Bukkit.getOnlinePlayers()) {
+                if (!sendResult(p, permission, formattedMessage)) return;
+            }
+
+            String origName = UltimateChat.getInstance().getConfig().getString("Discord.Sync.FromMinecraftToDiscord.Webhook.Name");
+            String webhookName = origName.replace("{PlayerName}", player.getName());
+            webhookName = PlaceholderAPI.setPlaceholders(player, webhookName);
+            webhookName = PlaceholderAPI.setBracketPlaceholders(player, webhookName);
+
+            String message = UltimateChat.getInstance().getConfig().getString("Discord.Sync.FromMinecraftToDiscord.Webhook.Message").replace("{message}", cleanedMessage);
+            DiscordWebhooks.sendWebhookMessageE(DiscordConnect.webhookUrl, message, webhookName, player.getName());
         } else if (range == -1) {
-            Bukkit.getServer().getOnlinePlayers().forEach(p -> {
-                if (permission == null || permission.isEmpty() || p.hasPermission(permission)) {
-                    p.sendMessage(formattedMessage);
-                }
-            });
+            for (Player p : Bukkit.getOnlinePlayers()) {
+                sendResult(p, permission, formattedMessage);
+            }
         } else {
             sendMessageToRange(player, formattedMessage, range, permission);
+        }
+    }
+
+    private Boolean sendResult(Player p, String permission, Component formattedMessage) {
+        if (permission == null || permission.isEmpty() || permission.equalsIgnoreCase("none") || p.hasPermission(permission)) {
+            p.sendMessage(formattedMessage);
+            return true;
+        } else {
+            p.sendMessage(LanguageConfig.getFormattedString("Chats.NoPermissionToChat"));
+            return false;
         }
     }
 

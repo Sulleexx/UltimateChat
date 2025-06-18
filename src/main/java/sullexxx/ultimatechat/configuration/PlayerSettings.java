@@ -60,5 +60,9 @@ public class PlayerSettings {
         config.set("Players." + player + ".DiscordMessages", value);
         saveConfig();
     }
-}
 
+    public static void settingAutoMessage(String player, String messageId, Boolean value) {
+        config.set("Players." + player + ".AutoMessages." + messageId, value);
+        saveConfig();
+    }
+}

@@ -16,9 +16,9 @@ public class DiscordLink extends ListenerAdapter {
         FileConfiguration config = UltimateChat.getInstance().getConfig();
         if (!config.getBoolean("Discord.Link.Enable")) return;
         if (!config.getBoolean("Discord.Enable")) return;
-        if ("привязка".equals(commandName)) {
-            OptionMapping nickOption = event.getOption("ник");
-            OptionMapping codeOption = event.getOption("код");
+        if (LanguageConfig.getString("DiscordCommands.ConnectCommand.Name").equals(commandName)) {
+            OptionMapping nickOption = event.getOption(LanguageConfig.getString("DiscordCommands.ConnectCommand.Option-1.Nickname"));
+            OptionMapping codeOption = event.getOption(LanguageConfig.getString("DiscordCommands.ConnectCommand.Option-2.Code"));
 
             if (nickOption != null && codeOption != null) {
                 String nick = nickOption.getAsString();
@@ -29,10 +29,11 @@ public class DiscordLink extends ListenerAdapter {
                 }
                 event.reply(config.getString("Discord.Link.Successful").replace("{DiscordName}", event.getUser().getName()).replace("{MinecraftName}", nick)).queue();
                 LinksConfig.addDataLink(nick, event.getUser().getId());
+                System.out.println(event.getUser().getId());
             } else {
                 event.reply(config.getString("Discord.Link.InvalidArgs")).setEphemeral(true).queue();
             }
-        } else if ("убрать_привязку".equals(commandName)) {
+        } else if (LanguageConfig.getString("DiscordCommands.DisconnectCommand.Name").equals(commandName)) {
             if (!config.getBoolean("Discord.UnLink.Enable")) return;
             if (LinksConfig.hasLink(event.getUser().getId())) {
                 String player = LinksConfig.getUsernameById(event.getUser().getId());

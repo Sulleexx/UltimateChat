@@ -47,6 +47,21 @@ public class LanguageConfig {
         return doubleFormat(rawString);
     }
 
+    public static Component getFormattedStringG(String path) {
+        String rawString = UltimateChat.getInstance().getConfig().getString(path, "undefined");
+        return doubleFormat(rawString);
+    }
+
+    public static Component getFormattedStringE(String path, String word) {
+        String rawString = config.getString(path, "undefined").replace("{word}", word);
+        return doubleFormat(rawString);
+    }
+
+    public static String getString(String path) {
+        return config.getString(path, "undefined");
+    }
+
+
     public static Component getFormattedString(String path, String player) {
         String rawString = config.getString(path, "undefined")
                 .replace("{player}", player);
@@ -68,6 +83,21 @@ public class LanguageConfig {
                 .replace("{target}", target);
         return doubleFormat(rawString);
     }
+
+    public static Component getFormattedStringForFun(String path, String player, String value) {
+        String rawString = config.getString(path, "undefined")
+                .replace("{player}", player)
+                .replace("{value}", value);
+        return doubleFormat(rawString);
+    }
+
+    public static Component getFormattedStringForBall(String path, String value, String question) {
+        String rawString = config.getString(path, "undefined")
+                .replace("{question}", question)
+                .replace("{answer}", value);
+        return doubleFormat(rawString);
+    }
+
 
     public static Component getFormattedString(String path, String player, String target, String message) {
         FileConfiguration confige = UltimateChat.getInstance().getConfig();
@@ -100,7 +130,7 @@ public class LanguageConfig {
     public static List<Component> getFormattedStringList(String path) {
         List<String> rawStrings = config.getStringList(path);
         return rawStrings.stream()
-                .map(LegacyComponentSerializer.legacyAmpersand()::deserialize)
+                .map(LanguageConfig::doubleFormat)
                 .collect(Collectors.toList());
     }
 
